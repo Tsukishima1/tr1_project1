@@ -1,7 +1,7 @@
 # tr1_project
 
 ## Foreword
-### This is an online shared diary project realized with only more than three months of front-end knowledge ToT
+This is an online shared diary project realized with only more than three months of front-end knowledge ToT
 
 ## Project setup
 ```
