@@ -7,27 +7,33 @@
                 <img src="../assets/fufu.jpg" />
                 <h2>{{ username }}</h2>
             </div>
+            <LeftNavMore />
         </div>
     </el-col>
 </template>
 
 <script>
+    import LeftNavMore from "./LeftNavMore.vue";
     export default {
         name: "LeftNav",
+        components: { LeftNavMore },
         data() {
             return {
-              username:'Puha_0618',
+                username: "",
             };
         },
         methods: {
-          send() {
-            this.$bus.$emit('getUsername',this.username)
-            console.log('触发了事件');
-          }
+            send() {
+                this.$bus.$emit("getUsername", this.username);
+            },
         },
         mounted() {
-          this.send();
+            this.send();
         },
+        // 从本地存储获取用户名
+        beforeMount() {
+            this.username=localStorage.getItem('username')
+        }
     };
 </script>
 

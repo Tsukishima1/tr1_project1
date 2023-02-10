@@ -9,6 +9,7 @@
                     format="yyyy 年 MM 月 dd 日"
                     value-format="yyyy-MM-dd"
                     :clearable="false"
+                    :picker-options="pickerOptions"
                 >
                 </el-date-picker>
             </div>
@@ -43,6 +44,12 @@
                 input: "",
                 date: "",
                 username: "",
+                time: "",
+                pickerOptions: {
+                    disabledDate(time) {
+                        return time.getTime() > Date.now() - 8.64e6;
+                    },
+                },
             };
         },
         methods: {
@@ -50,23 +57,29 @@
                 if (this.date === "") {
                     this.open1();
                     return;
-                }
-                else if (this.input=== "") {
+                } else if (this.input === "") {
                     this.open2();
                     return;
                 }
-                this.$bus.$emit("finishEdit", this.date, this.input, this.username);
+                const x = this.$moment().format("YYYY-MM-DD hh:mm:ss");
+                this.$bus.$emit(
+                    "finishEdit",
+                    this.date,
+                    this.input,
+                    this.username,
+                    x
+                );
                 this.date = "";
                 this.input = "";
             },
             open1() {
-                this.$message.error('你还没有选择日期诶！🤕');
+                this.$message.error("你还没有选择日期诶！🤕");
             },
             open2() {
-                this.$message.error('你还没有填写内容诶！🤒')
-            }
+                this.$message.error("你还没有填写内容噢！🤒");
+            },
         },
-        beforeMount() {
+        created() {
             this.$bus.$on("getUsername", (username) => {
                 this.username = username;
             });
