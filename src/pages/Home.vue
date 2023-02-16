@@ -3,11 +3,14 @@
         <!-- 头部 -->
         <Header />
         <!-- 主体 -->
-        <el-row type="flex" justify="center">
+        <el-row type="flex" justify="center" class="main">
             <!-- 左侧边栏 -->
-            <LeftNav />
+            <LeftNav class="leftnav"/>
             <!-- 右侧内容主体 -->
-            <RightMain />
+            <!-- <RightMain/> -->
+            <keep-alive>
+                <router-view></router-view>
+            </keep-alive>       
         </el-row>
         <Footer/>
     </div>
@@ -21,8 +24,20 @@
     export default {
         name: "Home",
         components: { Header, LeftNav, RightMain, Footer },
-    };
+    }; 
 </script>
 
 <style>
+    @media (max-width: 640px) {
+        .main {
+            flex-direction: column;
+            align-items: center;
+        }
+        .leftnav {
+            margin-bottom: 20px;
+        }
+        .el-message-box {
+            width: 300px;
+        }
+    }
 </style>

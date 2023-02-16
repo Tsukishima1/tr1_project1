@@ -7,11 +7,14 @@
                 @open="handleOpen"
                 @close="handleClose"
             >
-                <el-menu-item index="1">
+                <el-menu-item index="1" @click="toHomepage">
                     <span slot="title">首页</span>
                 </el-menu-item>
-                <el-menu-item index="2">
+                <el-menu-item index="2" @click="toManage">
                     <span slot="title">管理日记</span>
+                </el-menu-item>
+                <el-menu-item index="3" @click="toLogin">
+                    <span slot="title">退出登录</span>
                 </el-menu-item>
             </el-menu>
         </el-col>
@@ -28,6 +31,34 @@
             handleClose(key, keyPath) {
                 console.log(key, keyPath);
             },
+            toHomepage() {
+                if (this.$route.fullPath !== "/home/homepage")
+                    this.$router.push("/home/homepage");
+            },
+            toManage() {
+                if (this.$route.fullPath !== "home/manage")
+                    this.$router.push("/home/manage");
+            },
+            toLogin() {
+                this.$confirm("你确定要退出当前账号吗？", "提示", {
+                    confirmButtonText: "是的",
+                    cancelButtonText: "再等等",
+                    type: "warning",
+                })
+                    .then(() => {
+                        this.$router.replace("/login")
+                        this.$message({
+                            type: "success",
+                            message: "登出成功，请重新登录",
+                        });
+                    })
+                    .catch(() => {
+                        this.$message({
+                            type: "info",
+                            message: "已取消退出"
+                        })
+                    });
+            },
         },
     };
 </script>
@@ -39,6 +70,7 @@
         justify-content: center;
         font-weight: bold;
         border-radius: 4px;
+        font-size: 1rem;
     }
     .el-menu {
         background-color: transparent;
@@ -47,7 +79,13 @@
     .is-active {
         color: whitesmoke;
     }
-    .el-menu-item:focus, .el-menu-item:hover {
+    .el-menu-item:focus,
+    .el-menu-item:hover {
         background-color: rgba(245, 245, 245, 0.389);
+    }
+    @media (max-width: 640px) {
+        .el-menu {
+            display: flex;
+        }
     }
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <el-col :span="16" :md="15" class="rightnav">
+    <el-col :span="14" :md="15" class="rightnav">
         <InputBox/>
         <ContentBox/>
     </el-col>
@@ -14,6 +14,10 @@
     };
 </script>
 
-<style scoped>
-  /* 右侧边栏 输入框部分 */
+<style>
+ @media (max-width:640px) {
+    .rightnav {
+        width: 85%;
+    }
+ }
 </style>

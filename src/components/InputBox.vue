@@ -108,4 +108,12 @@
     #finish {
         font-weight: bold;
     }
+    @media (max-width: 640px) {
+        .el-date-editor {
+            width: 100%;
+        }
+    }
+    .block {
+        height: 45px;
+    }
 </style>

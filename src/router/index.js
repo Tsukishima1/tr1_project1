@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 //引入路由组件
 import Home from '../pages/Home.vue'
 import Login from '../pages/Login.vue'
+import Homepage from '../pages/Homepage.vue'
+import Manage from '../pages/Manage.vue'
 
 
 //创建router实例对象，去管理一组一组的路由规则
@@ -24,8 +26,24 @@ const router = new VueRouter({
 			component:Home,
 			meta: {
 				"title":"首页"
-			}
-		}
+			},
+			children: [
+				{
+					path:'homepage',
+					component:Homepage,
+					meta: {
+						"title":"首页"
+					},
+				},
+				{
+					path:'manage',
+					component:Manage,
+					meta: {
+						"title":"首页"
+					},
+				}
+			]
+		},
 	],
 })
 

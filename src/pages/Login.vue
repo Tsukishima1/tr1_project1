@@ -35,10 +35,10 @@
                 // 把用户名存进本地存储里面
                 localStorage.setItem('username',this.username)
                 // 点击登录跳转到首页
-                this.$router.replace("/home");
+                this.$router.replace("/home/homepage");
                 this.username="";
             },
-        },
+        }
     };
 </script>
 
@@ -59,7 +59,7 @@
         border-radius: 10px;
         box-shadow: 0px 0px 3px 3px rgba(255, 255, 255, 0.928);
     }
-    .loginbox .el-input {
+    .el-input {
         width: 230px;
         margin-bottom: 20px;
     }
@@ -87,5 +87,16 @@
     .el-button--login:hover {
         background-color: rgb(226, 232, 237);
         border-color: rgb(226, 232, 237);
+    }
+    @media (max-width:640px) {
+        .loginbox {
+            width: 250px;
+        }
+        .el-input {
+            width: 180px;
+        }
+        .el-message {
+            width: 250px;
+        }
     }
 </style>

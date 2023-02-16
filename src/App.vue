@@ -1,8 +1,6 @@
 <template>
     <div id="app">
-        <keep-alive>
-            <router-view></router-view>
-        </keep-alive>
+        <router-view></router-view>
     </div>
 </template>
 
@@ -52,5 +50,13 @@
     ::-webkit-scrollbar-thumb {
         background-color: rgb(178, 185, 203);
         border-radius: 5px;
+    }
+    .el-popup-parent--hidden {
+        padding-right: 0px;
+    }
+    .el-message-box__btns .el-button--primary {
+        font-weight: bold;
+        background-color:#9fabbd;
+        border-color: #dcdddf
     }
 </style>

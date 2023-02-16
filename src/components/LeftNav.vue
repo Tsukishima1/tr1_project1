@@ -1,13 +1,13 @@
 <template>
     <el-col :span="6" :md="5" class="leftnav">
-        <div class="grid-content bg-purple">
+        <div class="grid-content bg-purple navbox">
             <!-- 用户信息部分 -->
             <div class="user-container">
                 <!-- 头像图片地址是固定的 -->
                 <img src="../assets/fufu.jpg" />
                 <h2>{{ username }}</h2>
             </div>
-            <LeftNavMore />
+            <LeftNavMore class="navboxmore" />
         </div>
     </el-col>
 </template>
@@ -32,8 +32,8 @@
         },
         // 从本地存储获取用户名
         beforeMount() {
-            this.username=localStorage.getItem('username')
-        }
+            this.username = localStorage.getItem("username");
+        },
     };
 </script>
 
@@ -60,11 +60,32 @@
         border: 3px solid rgb(215, 222, 232);
     }
     @media (max-width: 640px) {
+        .navbox {
+            flex-direction: column;
+        }
         .user-container h2 {
             font-size: 1rem;
         }
         .user-container img {
             width: 3rem;
+        }
+        .navbox {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .leftnav {
+            margin-right: 0px;
+            width: auto;
+        }
+        .user-container {
+            width: auto;
+        }
+        .user-container h2 {
+            font-size: 1.5rem;
+        }
+        .user-container img {
+            width: 60px;
         }
     }
 </style>
