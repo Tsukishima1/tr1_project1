@@ -12,7 +12,8 @@ import router from './router'
 
 import moment from 'moment';
 import 'element-ui/lib/theme-chalk/display.css';
-import { Row,Col,Button,DatePicker,Input,Message,Menu,MenuItem,MenuItemGroup,Submenu,Alert, MessageBox } from "element-ui";
+import { PageHeader,Tooltip,Backtop,Icon,Row,Col,Button,DatePicker,Input,Message,Menu,MenuItem,MenuItemGroup,Submenu,Alert, MessageBox, Notification } from "element-ui";
+Vue.component(PageHeader.name, PageHeader)
 Vue.component(Row.name, Row)
 Vue.component(Col.name, Col)
 Vue.component(Button.name, Button)
@@ -25,6 +26,10 @@ Vue.component(MenuItemGroup.name, MenuItemGroup)
 Vue.component(Submenu.name, Submenu)
 Vue.component(Alert.name, Alert)
 Vue.component(MessageBox.name, MessageBox)
+Vue.component(Icon.name, Icon)
+Vue.component(Backtop.name, Backtop)
+Vue.component(Tooltip.name, Tooltip)
+Vue.component(Notification.name, Notification )
 
 Vue.config.productionTip = false
 
@@ -36,5 +41,6 @@ new Vue({
     Vue.prototype.$message = Message;
     Vue.prototype.$moment = moment;
     Vue.prototype.$confirm = MessageBox.confirm;
+    Vue.prototype.$notify = Notification;
   },
 }).$mount('#app')

@@ -25,12 +25,22 @@
             <div class="buttonbox">
                 <span>字数统计: {{ input.length }}</span>
                 <el-button
+                    v-if="!loading"
                     round
                     size="medium"
                     id="finish"
                     type="warning"
                     @click="finishEdit()"
                     >完成编辑</el-button
+                >
+                <el-button
+                    v-if="loading"
+                    round
+                    size="medium"
+                    id="finish"
+                    type="warning"
+                    icon="el-icon-loading"
+                    >发送中</el-button
                 >
             </div>
         </div>
@@ -50,6 +60,7 @@
                         return time.getTime() > Date.now() - 8.64e6;
                     },
                 },
+                loading: false,
             };
         },
         methods: {
@@ -57,20 +68,25 @@
                 if (this.date === "") {
                     this.open1();
                     return;
-                } else if (this.input === "") {
+                } else if (this.input.trim() === "") {
                     this.open2();
                     return;
                 }
-                const x = this.$moment().format("YYYY-MM-DD hh:mm:ss");
-                this.$bus.$emit(
-                    "finishEdit",
-                    this.date,
-                    this.input,
-                    this.username,
-                    x
-                );
-                this.date = "";
-                this.input = "";
+                this.loading = true;
+                const x = this.$moment().format("YYYY-MM-DD hh:mm:ss a");
+                const timer = setInterval(() => {
+                    this.$bus.$emit(
+                        "finishEdit",
+                        this.date,
+                        this.input,
+                        this.username,
+                        x
+                    );
+                    this.loading = false;
+                    clearInterval(timer);
+                    this.date = "";
+                    this.input = "";
+                }, 500);
             },
             open1() {
                 this.$message.error("你还没有选择日期诶！🤕");

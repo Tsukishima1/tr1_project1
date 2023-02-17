@@ -43,13 +43,20 @@
             "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
     }
     ::-webkit-scrollbar {
-        width: 10px;
-        height: 10px;
-        background-color: #dcdddf;
+        width: 7px;
+        height:100%;
     }
     ::-webkit-scrollbar-thumb {
-        background-color: rgb(178, 185, 203);
-        border-radius: 5px;
+        width: 4px;
+        height: 60px;
+        background-color: rgb(182, 185, 193);
+        border-radius: 3px;
+    }
+    ::-webkit-scrollbar-track {
+        border-radius: 10px;
+    }
+    ::-webkit-scrollbar-track-piece {
+        background-color: transparent
     }
     .el-popup-parent--hidden {
         padding-right: 0px;
@@ -58,5 +65,9 @@
         font-weight: bold;
         background-color:#9fabbd;
         border-color: #dcdddf
+    }
+
+    .el-message-box__btns .el-button--primary:hover {
+        background-color: #bbc3cf;
     }
 </style>

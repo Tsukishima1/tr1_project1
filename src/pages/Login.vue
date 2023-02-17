@@ -26,17 +26,24 @@
             goHome() {
                 if (
                     this.username.trim() === "" ||
-                    this.username.indexOf(" ") >= 0
+                    this.username.indexOf(" ") >= 0 ||
+                    this.username.length>12
                 ) {
-                    this.$message.error("您的用户名不合法哦！🤯");
+                    this.$message.error("用户名必须为1-12位的有效字符哦！🤯");
                     this.username = "";
                     return;
                 }
                 // 把用户名存进本地存储里面
-                localStorage.setItem('username',this.username)
+                localStorage.setItem("username", this.username);
                 // 点击登录跳转到首页
+                this.$notify({
+                    title:'登录成功',
+                    message:'欢迎使用TR共享日记本',
+                    type:'success'
+                });
+
                 this.$router.replace("/home/homepage");
-                this.username="";
+                this.username = "";
             },
         }
     };
@@ -88,7 +95,7 @@
         background-color: rgb(226, 232, 237);
         border-color: rgb(226, 232, 237);
     }
-    @media (max-width:640px) {
+    @media (max-width: 640px) {
         .loginbox {
             width: 250px;
         }

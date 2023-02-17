@@ -2,6 +2,7 @@
     <el-col :span="14" :md="15" class="rightnav">
         <InputBox/>
         <ContentBox/>
+        <el-backtop :visibility-height=200 :right=25></el-backtop>
     </el-col>
 </template>
 

@@ -5,6 +5,7 @@ import Home from '../pages/Home.vue'
 import Login from '../pages/Login.vue'
 import Homepage from '../pages/Homepage.vue'
 import Manage from '../pages/Manage.vue'
+import Details from '../pages/Details.vue'
 
 
 //创建router实例对象，去管理一组一组的路由规则
@@ -41,7 +42,16 @@ const router = new VueRouter({
 					meta: {
 						"title":"首页"
 					},
+				},
+				{	
+					name:'details',
+					path:'details',
+					component:Details,
+					meta: {
+						"title":"日记内容"
+					}
 				}
+				
 			]
 		},
 	],
