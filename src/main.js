@@ -1,16 +1,13 @@
 import Vue from 'vue'
 import App from './App.vue'
-// import axios from 'axios'
-// Vue.use(axios)
-import Vuex from 'vuex'
-Vue.use(Vuex)
-
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 import router from './router'
 
 import moment from 'moment';
+import './utils/axios'
+
 import 'element-ui/lib/theme-chalk/display.css';
 import { PageHeader,Tooltip,Backtop,Icon,Row,Col,Button,DatePicker,Input,Message,Menu,MenuItem,MenuItemGroup,Submenu,Alert, MessageBox, Notification } from "element-ui";
 Vue.component(PageHeader.name, PageHeader)

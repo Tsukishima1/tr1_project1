@@ -1,13 +1,18 @@
 <template>
     <el-col id="details" :span="14" :md="15">
-        <el-page-header @back="goBack" content="日记内容"></el-page-header>
+        <el-page-header @back="goBack" content=""></el-page-header>
         <div class="container">
             <!-- {{this.$route.params.id}} -->
-            <span class="date">日期：2023-2-17</span>
-            <span class="author">作者：Akaashi</span>
-            <span class="content">
-                得与失既不是人生的起点，也不是人生的终点，一切得失不过是人生必经之过程。我们在高考前，常听人说高考是人生的转折点，它是十年寒窗的终点，也是迈入更高学府的起点，可是谁又能说，高考就是人生的起点或终点呢？漫漫一生中，我们会面临无数抉择，一个抉择是一段故事的结局，也是另一段故事的开篇。起点也好，终点也罢，都是人生中的一段过程，人生的价值是在得与失的不断转化中才实现的。如果非要为生命选一个终点，我觉得只有死亡，但细究起来，死亡也不是生命的终点，有的人死了，他还活着，就像屈原，两千多年了，他“虽九死其犹未悔”的爱国情怀滋养了一代又一代中华儿女——而这，就是他生命的延续。
-            </span>
+            <span class="title">{{dataObj.title}}</span>
+            <span class="author">{{dataObj.name}}</span>
+            <span class="content">{{dataObj.detail}}</span>
+            <span class="editTime">{{dataObj.time}}</span>
+        </div>
+        <div class="like">
+            <transition :name="like?'zoom':''" mode="out-in">
+                <img v-if="!like" src="../assets/like.png" alt="" @click="xihuan" key="like">
+                <img v-if="like" src="../assets/liked.png" alt="" @click="xihuan" key="liked">            
+            </transition>
         </div>
     </el-col>
 </template>
@@ -15,19 +20,72 @@
 <script>
     export default {
         name: "Details",
+        data() {
+            return {
+                like:false,
+                dataObj: {
+                    title: "",
+                    name: "",
+                    detail: "",
+                    time: ""
+                }
+            }
+        },
         methods: {
             goBack() {
                 this.$router.back();
             },
+            xihuan() {
+                this.like = !this.like;
+            }
         },
-        // activated(){
-        //     console.log(this.$route.params.date);
-        // },
+        deactivated(){
+            this.like = false;
+        },
+        activated() {
+            if (this.$route.params.dairyObj) {
+                localStorage.setItem("dairyObj", JSON.stringify(this.$route.params.dairyObj));
+            }
+            this.dataObj = JSON.parse(localStorage.getItem("dairyObj"));
+            window.scrollTo(0,375);
+        },
     };
 </script>
 
 <style scoped>
+    .editTime {
+        margin-top: 10px;
+        font-size: 0.4rem;
+        color: rgb(154, 154, 154);
+    }
+
+    .zoom-enter-active, .zoom-leave-active {
+        transition: all .15s cubic-bezier(0.42, 0, 0.34, 1.55);
+    }
+    .zoom-enter, .zoom-leave-to {
+        transform: scale(0);
+    }
+    .zoom-enter-to, .zoom-leave {
+        transform: scale(1);
+    }
+
+    .like img {
+        width: 25px;
+        cursor: pointer;
+    }
+    .like {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        position: absolute;
+        top: 15px;
+        right: 30px;
+    }
+
     #details {
+        height: 100%;
+        position: relative;
         padding: 15px;
         background: rgba(218, 223, 228, 0.732);
         border-radius: 5px;
@@ -39,18 +97,26 @@
         padding: 5px;
         display: flex;
         flex-direction: column;
+        align-items: center;
         gap: 10px;
+        cursor: default;
     }
-    .date,
     .author {
+        display: flex;
+        justify-content: center;
+        width: 100%;
         font-weight: bold;
         font-size: 0.9rem;
-        color: rgb(100, 100, 100);
+        color: rgb(143, 142, 142);
+        padding-bottom: 10px;
+        border-bottom: 2px solid rgba(167, 181, 189, 0.521);
+    }
+    .title {
+        font-size: 1.2rem;
+        color: rgb(76, 89, 107);
+        font-weight: 600;
     }
     .content {
-        padding-top: 10px;
-        border-top: 2px solid rgba(167, 181, 189, 0.521);
-        text-indent: 2em;
         font-size: 1.15rem;
         line-height: 1.6rem;
         font-weight: 300;

@@ -1,18 +1,11 @@
 <template>
     <div class="grid-content bg-purple-light grid-iptbox">
         <div id="inputbox">
-            <div class="block">
-                <el-date-picker
-                    v-model="date"
-                    type="date"
-                    placeholder="选择记录的日期"
-                    format="yyyy 年 MM 月 dd 日"
-                    value-format="yyyy-MM-dd"
-                    :clearable="false"
-                    :picker-options="pickerOptions"
-                >
-                </el-date-picker>
-            </div>
+            <el-input
+                class="ipttitle"
+                v-model="title"
+                placeholder="请填写日记标题"
+            ></el-input>
             <hr />
             <el-input
                 v-model="input"
@@ -48,24 +41,19 @@
 </template>
 
 <script>
+    import axios from 'axios'
     export default {
         data() {
             return {
+                title: "",
                 input: "",
-                date: "",
                 username: "",
-                time: "",
-                pickerOptions: {
-                    disabledDate(time) {
-                        return time.getTime() > Date.now() - 8.64e6;
-                    },
-                },
                 loading: false,
             };
         },
         methods: {
             finishEdit() {
-                if (this.date === "") {
+                if (this.title.trim() === "") {
                     this.open1();
                     return;
                 } else if (this.input.trim() === "") {
@@ -73,23 +61,35 @@
                     return;
                 }
                 this.loading = true;
-                const x = this.$moment().format("YYYY-MM-DD hh:mm:ss a");
+                axios.post(
+                    "/dairy/addDairy",
+                    {},
+                    {
+                        params: {
+                            name: this.username,
+                            title: this.title,
+                            detail: this.input,
+                        },
+                    }
+                );
                 const timer = setInterval(() => {
-                    this.$bus.$emit(
-                        "finishEdit",
-                        this.date,
-                        this.input,
-                        this.username,
-                        x
-                    );
+                    this.$axios
+                        .get("/dairy/selectDairy")
+                        .then((res) => {
+                            // console.log(res.data.data.items.reverse()[0]);
+                            this.$bus.$emit('addDairy', res.data.data.items.reverse()[0])
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                        });
                     this.loading = false;
                     clearInterval(timer);
-                    this.date = "";
+                    this.title = "";
                     this.input = "";
                 }, 500);
             },
             open1() {
-                this.$message.error("你还没有选择日期诶！🤕");
+                this.$message.error("你还没有填写标题诶！🤕");
             },
             open2() {
                 this.$message.error("你还没有填写内容噢！🤒");
@@ -106,6 +106,8 @@
 <style scoped>
     #inputbox {
         padding: 10px;
+        display: flex;
+        flex-direction: column;
     }
     hr {
         margin: 8px 5px;
@@ -129,7 +131,7 @@
             width: 100%;
         }
     }
-    .block {
-        height: 45px;
+    .ipttitle {
+        margin-bottom: 0px;
     }
 </style>

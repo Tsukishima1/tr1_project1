@@ -23,7 +23,7 @@ const router = new VueRouter({
 			}
 		},
 		{
-			path:'/home',
+			path:'/home', redirect: '/home/homepage',
 			component:Home,
 			meta: {
 				"title":"首页"

@@ -43,20 +43,7 @@
             "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
     }
     ::-webkit-scrollbar {
-        width: 7px;
-        height:100%;
-    }
-    ::-webkit-scrollbar-thumb {
-        width: 4px;
-        height: 60px;
-        background-color: rgb(182, 185, 193);
-        border-radius: 3px;
-    }
-    ::-webkit-scrollbar-track {
-        border-radius: 10px;
-    }
-    ::-webkit-scrollbar-track-piece {
-        background-color: transparent
+        display:none;
     }
     .el-popup-parent--hidden {
         padding-right: 0px;
