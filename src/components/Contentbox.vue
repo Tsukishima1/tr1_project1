@@ -39,14 +39,9 @@
                     },
                 });
             },
-            findAll() {
-                axios.get("/dairy/selectDairy")
-                    .then((res) => {
-                        this.diaryDatas = res.data.data.items.reverse();
-                    })
-                    .catch((err) => {
-                        console.error(err);
-                    });
+            async findAll() {
+                const res = await axios.get("/dairy/selectDairy");
+                this.diaryDatas = res.data.data.items.reverse();
             },
         },
         mounted() {

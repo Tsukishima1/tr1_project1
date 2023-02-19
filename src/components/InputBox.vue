@@ -73,10 +73,8 @@
                     }
                 );
                 const timer = setInterval(() => {
-                    this.$axios
-                        .get("/dairy/selectDairy")
+                    axios.get("/dairy/selectDairy")
                         .then((res) => {
-                            // console.log(res.data.data.items.reverse()[0]);
                             this.$bus.$emit('addDairy', res.data.data.items.reverse()[0])
                         })
                         .catch((err) => {

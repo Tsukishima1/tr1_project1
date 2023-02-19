@@ -2,18 +2,19 @@
     <el-row class="tac">
         <el-col :span="24">
             <el-menu
-                default-active="1"
+                :default-active='$route.path'
+                router
                 class="el-menu-vertical-demo"
                 @open="handleOpen"
                 @close="handleClose"
             >
-                <el-menu-item index="1" @click="toHomepage">
+                <el-menu-item index="/home/homepage" @click="toHomepage">
                     <span slot="title">首页</span>
                 </el-menu-item>
-                <el-menu-item index="2" @click="toManage">
+                <el-menu-item index="/home/manage" @click="toManage">
                     <span slot="title">管理日记</span>
                 </el-menu-item>
-                <el-menu-item index="3" @click="toLogin">
+                <el-menu-item index="" @click="toLogin">
                     <span slot="title">退出登录</span>
                 </el-menu-item>
             </el-menu>

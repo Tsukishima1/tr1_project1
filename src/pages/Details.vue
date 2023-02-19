@@ -112,7 +112,7 @@
         border-bottom: 2px solid rgba(167, 181, 189, 0.521);
     }
     .title {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
         color: rgb(76, 89, 107);
         font-weight: 600;
     }

@@ -9,7 +9,12 @@ import moment from 'moment';
 import './utils/axios'
 
 import 'element-ui/lib/theme-chalk/display.css';
-import { PageHeader,Tooltip,Backtop,Icon,Row,Col,Button,DatePicker,Input,Message,Menu,MenuItem,MenuItemGroup,Submenu,Alert, MessageBox, Notification } from "element-ui";
+import { PageHeader,Tooltip,Backtop,Icon,Row,Col,Button,DatePicker,Input,Message,Menu,MenuItem,MenuItemGroup,Submenu,Alert, MessageBox, Notification, Form, FormItem, Select, Option, Empty,  } from "element-ui";
+Vue.component(Empty.name, Empty)
+Vue.component(Form.name, Form)
+Vue.component(FormItem.name, FormItem)
+Vue.component(Select.name, Select)
+Vue.component(Option.name, Option)
 Vue.component(PageHeader.name, PageHeader)
 Vue.component(Row.name, Row)
 Vue.component(Col.name, Col)

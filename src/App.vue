@@ -43,7 +43,7 @@
             "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
     }
     ::-webkit-scrollbar {
-        display:none;
+
     }
     .el-popup-parent--hidden {
         padding-right: 0px;

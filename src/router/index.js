@@ -1,6 +1,17 @@
 //引入VueRouter
+import Vue from 'vue'
 import VueRouter from 'vue-router'
+Vue.use(VueRouter)
 //引入路由组件
+
+//解决vue路由重复导航错误
+//获取原型对象上的push函数
+const originalPush = VueRouter.prototype.push
+//修改原型对象中的push方法
+VueRouter.prototype.push = function push(location) {
+   return originalPush.call(this, location).catch(err => err)
+}
+
 import Home from '../pages/Home.vue'
 import Login from '../pages/Login.vue'
 import Homepage from '../pages/Homepage.vue'

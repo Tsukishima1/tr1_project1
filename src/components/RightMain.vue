@@ -15,7 +15,7 @@
     };
 </script>
 
-<style>
+<style scoped>
  @media (max-width:640px) {
     .rightnav {
         width: 85%;
