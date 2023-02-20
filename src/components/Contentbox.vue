@@ -49,6 +49,19 @@
             this.$bus.$on("addDairy", (dairyObj) => {
                 this.diaryDatas.unshift(dairyObj);
             });
+            this.$bus.$on('deletedDairy', (id) => {
+                this.diaryDatas = this.diaryDatas.filter((item) => {
+                    return item.id!== id;
+                });
+            });
+            this.$bus.$on('updatedDairy', (dairyObj) => {
+                this.diaryDatas = this.diaryDatas.map((item) => {
+                    if (item.id === dairyObj.id) {
+                        return dairyObj;
+                    }
+                    return item;
+                });
+            })
         },
     };
 </script>
@@ -87,7 +100,7 @@
     }
     .username {
         font-size: 0.8rem;
-        color: rgb(222, 157, 44);
+        color: rgb(235, 165, 43);
         font-weight: bold;
     }
 

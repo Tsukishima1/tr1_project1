@@ -12,7 +12,7 @@
                     <span slot="title">首页</span>
                 </el-menu-item>
                 <el-menu-item index="/home/manage" @click="toManage">
-                    <span slot="title">管理日记</span>
+                    <span slot="title">查询日记</span>
                 </el-menu-item>
                 <el-menu-item index="" @click="toLogin">
                     <span slot="title">退出登录</span>

@@ -3,12 +3,12 @@
         <div id="inputbox">
             <el-input
                 class="ipttitle"
-                v-model="title"
+                v-model.lazy="title"
                 placeholder="请填写日记标题"
             ></el-input>
             <hr />
             <el-input
-                v-model="input"
+                v-model.lazy="input"
                 placeholder="请输入日记内容ヾ(≧▽≦*)o"
                 type="textarea"
                 autosize
@@ -22,7 +22,6 @@
                     round
                     size="medium"
                     id="finish"
-                    type="warning"
                     @click="finishEdit()"
                     >完成编辑</el-button
                 >
@@ -31,7 +30,6 @@
                     round
                     size="medium"
                     id="finish"
-                    type="warning"
                     icon="el-icon-loading"
                     >发送中</el-button
                 >
@@ -71,7 +69,9 @@
                             detail: this.input,
                         },
                     }
-                );
+                ).catch((err)=>{
+                    this.$message.error(err.message);
+                });
                 const timer = setInterval(() => {
                     axios.get("/dairy/selectDairy")
                         .then((res) => {
@@ -120,6 +120,13 @@
         font-size: 0.8rem;
         margin-right: 10px;
         color: rgb(162, 168, 176);
+    }
+    .buttonbox .el-button {
+        background-color: rgb(148, 162, 192);
+        color: rgb(243, 241, 241);
+    }
+    .buttonbox .el-button:hover {
+        background-color: rgb(169, 181, 206);
     }
     #finish {
         font-weight: bold;

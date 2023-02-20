@@ -4,13 +4,19 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 //引入路由组件
 
-//解决vue路由重复导航错误
-//获取原型对象上的push函数
-const originalPush = VueRouter.prototype.push
-//修改原型对象中的push方法
-VueRouter.prototype.push = function push(location) {
-   return originalPush.call(this, location).catch(err => err)
+//先把VueRouter原型对象的push保存一份
+const originPush = VueRouter.prototype.push
+//重写push方法 
+VueRouter.prototype.push = function (location,resolve,reject) {
+    //调用保存的push方法
+    //但是保存的push方法是挂载在window的方法 所以要通过call修改this的指向
+  if(resolve&&reject){
+    originPush.call(this,location,resolve,reject);
+  }else{
+    originPush.call(this,location,()=>{},()=>{});
+  }
 }
+
 
 import Home from '../pages/Home.vue'
 import Login from '../pages/Login.vue'
@@ -67,6 +73,7 @@ const router = new VueRouter({
 		},
 	],
 })
+
 
 router.beforeEach( (to,from,next) => {
 	if(to.meta.title){
