@@ -1,7 +1,7 @@
 <template>
     <div class="header">
         <header>
-            <p>TR_D1ary</p>
+            <p>TR_Da1ry</p>
             <p class="tip">共享日记本📖</p>
         </header>
     </div>
