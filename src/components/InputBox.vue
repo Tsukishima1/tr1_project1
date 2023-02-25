@@ -77,8 +77,8 @@
                         .then((res) => {
                             this.$bus.$emit('addDairy', res.data.data.items.reverse()[0])
                         })
-                        .catch((err) => {
-                            console.log(err);
+                        .catch ((error)=>{
+                            this.$message.error(error.message)
                         });
                     this.loading = false;
                     clearInterval(timer);

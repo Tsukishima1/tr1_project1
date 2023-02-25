@@ -146,6 +146,8 @@
                             "dairyObj",
                             JSON.stringify(this.dataObj)
                         );
+                    }).catch((err)=>{
+                        this.$message.error(err.message);
                     });
             },
         },
