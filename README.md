@@ -3,7 +3,7 @@
 ## 1
 运行请手动```npm install```后```npm run serve```
 
-**Wish you hay every day**
+**Wish you happy every day**
 
 ## Project setup
 ```
