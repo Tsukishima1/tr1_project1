@@ -6,7 +6,7 @@ Vue.use(VueRouter)
 import router from './router'
 
 import moment from 'moment';
-import './utils/axios'
+import http from './http';
 
 import 'element-ui/lib/theme-chalk/display.css';
 import { PageHeader,Tooltip,Backtop,Icon,Row,Col,Button,DatePicker,Input,Message,Menu,MenuItem,MenuItemGroup,Submenu,Alert, MessageBox, Notification, Form, FormItem, Select, Option, Empty,  } from "element-ui";
@@ -44,5 +44,6 @@ new Vue({
     Vue.prototype.$moment = moment;
     Vue.prototype.$confirm = MessageBox.confirm;
     Vue.prototype.$notify = Notification;
+    Vue.prototype.$http = http;
   },
 }).$mount('#app')

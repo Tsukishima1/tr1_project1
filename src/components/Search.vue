@@ -45,7 +45,7 @@
                     return;
                 }
                 try {
-                    const res = await axios.post(
+                    const res = await this.$http.post(
                         "/dairy/selectDairyByCondition",
                         {},
                         {
@@ -55,7 +55,7 @@
                             },
                         }
                     );
-                    this.$bus.$emit("searchsth", res.data.data.items);
+                    this.$bus.$emit("searchsth", res.data.items);
                 } catch (error) {
                     this.$message.error(error.message)
                 }

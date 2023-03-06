@@ -100,8 +100,7 @@
                     type: "warning",
                 })
                     .then(() => {
-                        console.log(this.dataObj.id);
-                        axios
+                        this.$http
                             .delete("/dairy/deleteDairy", {
                                 params: {
                                     id: this.dataObj.id,
@@ -123,7 +122,7 @@
             },
             finishReedit() {
                 this.reedit = !this.reedit;
-                axios
+                this.$http
                     .post(
                         "/dairy/updateDairy",
                         {},
