@@ -8,9 +8,6 @@ module.exports = defineConfig({
       '/dairy': {
         target:'http://pve.lycoris.site:9780',
         changeOrigin: true,
-        pathRewrite: {
-          '^/dairy': '',
-        }
       }
     }
   }
