@@ -21,7 +21,6 @@
 </template>
 
 <script>
-    import axios from "axios";
 
     export default {
         name: "ContentBox",
@@ -40,8 +39,8 @@
                 });
             },
             async findAll() {
-                const res = await axios.get("/dairy/selectDairy");
-                this.diaryDatas = res.data.data.items.reverse();
+                const res = await this.$http.get("/dairy/selectDairy");
+                this.diaryDatas = res.data.items.reverse();
             },
         },
         mounted() {

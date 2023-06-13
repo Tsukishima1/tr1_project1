@@ -73,9 +73,9 @@
                     this.$message.error(err.message);
                 });
                 const timer = setInterval(() => {
-                    axios.get("/dairy/selectDairy")
+                    this.$http.get("/dairy/selectDairy")
                         .then((res) => {
-                            this.$bus.$emit('addDairy', res.data.data.items.reverse()[0])
+                            this.$bus.$emit('addDairy', res.data.items.reverse()[0])
                         })
                         .catch ((error)=>{
                             this.$message.error(error.message)
