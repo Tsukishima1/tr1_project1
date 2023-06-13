@@ -1,6 +1,6 @@
 <template>
     <div id="foot">
-        <p>-- Contact me 📬 Akaashi1owo@qq.com --</p>
+        <p>-- Contact me 📬 akaashi1owo@qq.com --</p>
     </div>
 </template>
 
